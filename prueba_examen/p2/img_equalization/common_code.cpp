@@ -70,11 +70,11 @@ fsiv_create_equalization_lookup_table(const cv::Mat& hist,
 
 	for (int i = 1; i < hist.rows; ++i)
 		std::cout << hist.at<float>(i,0) << ":" << i << ":";
-	std::endl;
+	std::cout << std::endl;
 
 	for (int i = 1; i < hist.rows; ++i)
 		std::cout << lkt.at<float>(i,0) << ":" << i << ":";
-	std::endl;
+	std::cout << std::endl;
 	//
 
 	CV_Assert(lkt.type()==CV_8UC1);
