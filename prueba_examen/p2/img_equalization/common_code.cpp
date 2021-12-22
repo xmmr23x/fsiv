@@ -63,12 +63,16 @@ fsiv_create_equalization_lookup_table(const cv::Mat& hist,
 	lkt = hist.clone();
 	
 	fsiv_normalize_histogram(lkt);
+
+	m1 = lkt.at<float>(127,0)
+	m2 = lkt.at<float>(128,0)
+
 	fsiv_accumulate_histogram(lkt);
 
 	lkt.convertTo(lkt, CV_8UC1, 255.0);
 	if (hold_median) {
-		lkt.at<float>(127,0) = hist.at<float>(127,0);
-		lkt.at<float>(128,0) = hist.at<float>(128,0);
+		lkt.at<float>(127,0) = m1;
+		lkt.at<float>(128,0) = m2;
 	}
 	//
 
