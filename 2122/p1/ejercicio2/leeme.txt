@@ -1,0 +1,8 @@
+Se han realizado las funciones:
+	- Operaciones de conversión byte <> float
+	- Operaciones de conversión BGR <> HSV
+	- Procesado CBG básico
+	- Procesado CBG sólo canal V (luma)
+
+Orden:
+	- processImg [-l] [-c=<float=1.0>] [-b=<float=0.0>] [-g=<float=1.0>] <input img> <output img>

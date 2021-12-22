@@ -1,0 +1,213 @@
+/*!
+  Esto es un esqueleto de programa para usar en las prácticas
+  de Visión Artificial.
+
+  Se supone que se utilizará OpenCV.
+
+  Para compilar, puedes ejecutar:
+    g++ -Wall -o esqueleto esqueleto.cc `pkg-config opencv --cflags --libs`
+
+*/
+
+#include <iostream>
+#include <exception>
+
+//Includes para OpenCV, Descomentar según los módulo utilizados.
+#include <opencv2/core/core.hpp>
+#include <opencv2/core/utility.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+//#include <opencv2/calib3d/calib3d.hpp>
+
+const cv::String keys =
+    "{help h usage ? |      | print this message.}"
+    "{i interactive  |      | Activate interactive mode.}"
+    "{luma           |      | process only \"luma\" if color image.}"
+    "{c contrast     |1.0   | contrast parameter.}"
+    "{b bright       |0.0   | bright parameter.}"
+    "{g gamma        |1.0   | gamma parameter.}"
+    "{@input         |<none>| input image.}"
+    "{@output        |<none>| output image.}"
+    ;
+
+struct UserData {
+    cv::Mat input;
+    cv::Mat output;
+    float contrast;
+    float bright;
+    float gamma;
+    bool luma_is_set;
+};
+
+void
+cbg_process(const cv::Mat& input,
+            const float contrast,
+            const float bright,
+            const float gamma,
+            cv::Mat& output)
+{
+    CV_Assert(input.depth()==CV_32F);
+    cv::pow(input, gamma, output);
+    output = (contrast * output) + bright;
+}
+
+void process_image(UserData *p)
+{
+    cv::Mat img1;
+
+    p->input.convertTo(img1, CV_32F, 1.0/ 255.0, 0.0); //Casting a float [0,1]
+
+    std::vector<cv::Mat> hsv_channels;
+    if (p->input.channels()==3 && p->luma_is_set)
+    {
+        cv::Mat hsv_img;
+        cv::cvtColor(img1, hsv_img, cv::COLOR_BGR2HSV);
+        cv::split(hsv_img, hsv_channels);
+        img1 = hsv_channels[2];
+    }
+
+    cv::Mat img2; //the processed image/channel.
+    cbg_process(img1, p->contrast, p->bright, p->gamma, img2);
+
+    if (p->input.channels()==3 && p->luma_is_set)
+    {
+        hsv_channels[2] = img2;
+        cv::Mat hsv_img;
+        cv::merge(hsv_channels, hsv_img);
+        cv::cvtColor(hsv_img, p->output, cv::COLOR_HSV2BGR);
+    }
+    else
+        p->output = img2;
+
+    p->output.convertTo(p->output, CV_8U, 255.0, 0.0); //Casting a byte.
+}
+
+void contrast_trackbar (int pos, void *userdata)
+{
+    UserData * d = static_cast<UserData*>(userdata);
+    d->contrast = float(pos)/200.0 * 2.0;
+    std::cout << "Set contrast to " << d->contrast << std::endl;
+    process_image(d);
+    cv::imshow("PROCESADA", d->output);
+}
+
+void bright_trackbar (int pos, void *userdata)
+{
+    UserData * d = static_cast<UserData*>(userdata);
+    d->bright = (float(pos)-100.0)/100.0;
+    std::cout << "Set bright to " << d->bright << std::endl;
+    process_image(d);
+    cv::imshow("PROCESADA", d->output);
+}
+
+void gamma_trackbar (int pos, void *userdata)
+{
+    UserData * d = static_cast<UserData*>(userdata);
+    d->gamma = float(pos)/200.0 * 2.0;
+    std::cout << "Set gamma to " << d->gamma << std::endl;
+    process_image(d);
+    cv::imshow("PROCESADA", d->output);
+}
+
+void luma_trackbar (int pos, void *userdata)
+{
+    UserData * d = static_cast<UserData*>(userdata);
+    d->luma_is_set = (pos == 1);
+    std::cout << "Set luma mode to state " << d->luma_is_set << std::endl;
+    process_image(d);
+    cv::imshow("PROCESADA", d->output);
+}
+
+int
+main (int argc, char* const* argv)
+{
+  int retCode=EXIT_SUCCESS;
+  
+  try {    
+
+      cv::CommandLineParser parser(argc, argv, keys);
+      parser.about("Ajust the contrast/bright/gamma parameters of a image. (ver 0.0.0)");
+      if (parser.has("help"))
+      {
+          parser.printMessage();
+          return 0;
+      }
+      UserData data;
+      data.contrast = parser.get<float>("c");
+      data.bright = parser.get<float>("b");
+      data.gamma = parser.get<float>("g");
+      data.luma_is_set = parser.has("luma");
+
+      cv::String input_name = parser.get<cv::String>(0);
+      cv::String output_name = parser.get<cv::String>(1);
+
+      if (!parser.check())
+      {
+          parser.printErrors();
+          return 0;
+      }
+
+      if (data.contrast <0.0 || data.contrast>2.0)
+      {
+          std::cerr << "Error: contrast parameter has values in [0, 2] interval." << std::endl;
+          return EXIT_FAILURE;
+      }
+      if (data.bright < -1.0 || data.bright>1.0)
+      {
+          std::cerr << "Error: bright parameter has values in [-1, 1] interval." << std::endl;
+          return EXIT_FAILURE;
+      }
+      if (data.gamma <0.0 || data.gamma>2.0)
+      {
+          std::cerr << "Error: gamma parameter has values in [0, 2] interval." << std::endl;
+          return EXIT_FAILURE;
+      }
+
+      data.input = cv::imread(input_name);
+
+      if (data.input.empty())
+      {
+          std::cerr << "Error: could not open the input image '"<<input_name<<"'."<< std::endl;
+          return EXIT_FAILURE;
+      }
+      int key = 0;
+      if (parser.has("i"))
+      {
+        cv::namedWindow("ORIGINAL");
+        cv::imshow("ORIGINAL", data.input);
+
+        int c_int = data.contrast/2.0 * 200;
+        int b_int = (data.bright+1.0)/2.0 * 200;
+        int g_int = data.gamma/2.0 * 200;
+        int l_int = data.luma_is_set ? 1 : 0;
+
+        cv::namedWindow("PROCESADA");
+        cv::createTrackbar("C", "PROCESADA", &c_int, 200, contrast_trackbar, &data);
+        cv::createTrackbar("B", "PROCESADA", &b_int, 200, bright_trackbar, &data);
+        cv::createTrackbar("G", "PROCESADA", &g_int, 200, gamma_trackbar, &data);
+        cv::createTrackbar("Luma", "PROCESADA", &l_int, 1, luma_trackbar, &data);
+        process_image(&data);
+        cv::imshow("PROCESADA", data.output);
+        key = cv::waitKey(0) & 0xff;
+      }
+      else
+          process_image(&data);
+
+      if (key != 27)
+      {
+          if (!cv::imwrite(output_name, data.output))
+          {
+              std::cerr << "Error: could not save the result in file '"<<output_name<<"'."<< std::endl;
+                return EXIT_FAILURE;
+            }
+      }
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "Capturada excepcion: " << e.what() << std::endl;
+    retCode = EXIT_FAILURE;
+  }
+  return retCode;
+}
+
+

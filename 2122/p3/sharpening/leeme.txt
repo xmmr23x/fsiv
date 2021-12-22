@@ -1,0 +1,13 @@
+Se han realizado las funciones:
+	- fsiv_create_laplacian_filter
+	- fsiv_create_gaussian_filter
+	- fsiv_fill_expansion
+	- fsiv_circular_expansion
+	- fsiv_filter2D
+	- fsiv_extend_image
+	- fsiv_image_sharpening
+		- monocroma
+		- rgb only_luma
+
+Orden:
+	- sharpen [-c] [-l] [-g=<float=0.0>] [-f=<int=0>] [-r1=<int=1>] [-r2=<int=2>] <input img> <output img>

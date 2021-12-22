@@ -1,0 +1,9 @@
+* 1.0:
+Start release.
+1.1:
+Recodificado test_common_code.cpp para generar fichero con datos sobre el test
+realizado y que ha falldo.
+1.2
+- Fixed bug in test_common_code when test fsiv_image_sharpening.
+* 1.3:
+- Fixed several tests.

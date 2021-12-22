@@ -1,0 +1,91 @@
+.TH "src/main.cc" 3 "Tue Sep 29 2020" "Version 1.0" "Practica 1 - Realce de imagen" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/main.cc \- Realce de una imagen seleccionando un rectangulo o un poligono\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'funciones\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *const *argv)"
+.br
+.RI "Cuerpo del programa\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const cv::String \fBkeys\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Realce de una imagen seleccionando un rectangulo o un poligono\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+Manuel Mariscal 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+29/09/2020
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+1\&.0 
+.RE
+.PP
+
+.PP
+Definition in file \fBmain\&.cc\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int main (int argc, char *const * argv)"
+
+.PP
+Cuerpo del programa\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+Se debe indicar la ruta y el nombre de una imagen origen y otra destino para guardar los resultados\&.
+.RE
+.PP
+El programa recibirá como argumento la ruta de la imagen en la que se desea realizar el realce y la ruta donde se guardará el resultado en caso de ser el esperado\&. Hay dos opciones de ejecución: 
+.PD 0
+
+.IP "\(bu" 2
+Opción por defecto: permite realizar el realce seleccionando dos puntos de la imagen o seleccionando un area de forma interactiva\&. Una vez realizado el realce no se puede modificar\&. 
+.IP "\(bu" 2
+-p: Permite seleccionar varios puntos de forma que se genere un poligono\&. Una vez realizado el realce no se puede modificar\&. 
+.PP
+
+.PP
+Definition at line 28 of file main\&.cc\&.
+.SH "Variable Documentation"
+.PP 
+.SS "const cv::String keys"
+\fBInitial value:\fP
+.PP
+.nf
+=
+    "{help h usage ? |      | print this message   }"
+    "{p              |      | ejecuta onMousePoligono   }"
+    "{@image1        |      | image1 for compare   }"
+    "{@image2        |<none>| image2 for compare   }"
+.fi
+.PP
+Definition at line 11 of file main\&.cc\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Practica 1 - Realce de imagen from the source code\&.

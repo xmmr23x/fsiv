@@ -1,0 +1,12 @@
+Se han realizado las funciones:
+	- fsiv_create_box_filter
+	- fsiv_create_gaussian_filter
+	- fsiv_fill_expansion
+	- fsiv_circular_expansion
+	- fsiv_filter2D
+	- fsiv_combine_images
+	- fsiv_usm_enhance
+	- Procesar en color (sólo luma)
+
+Orden:
+	- usm_enhance [-c] [-g=<float=1.0>] [-f=<int=0>] [-r=<int=1>] <input img> <output img>

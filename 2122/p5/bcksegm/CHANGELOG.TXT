@@ -1,0 +1,7 @@
+* 1.0:
+- Start release.
+* 1.1:
+- Remove not used function from common_code.hpp
+- Added test_common_code.
+* 1.2:
+- Corrected same erros in test_common_code.pp

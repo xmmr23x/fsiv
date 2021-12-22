@@ -1,0 +1,121 @@
+\hypertarget{funciones_8h}{}\doxysection{src/funciones.h File Reference}
+\label{funciones_8h}\index{src/funciones.h@{src/funciones.h}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$exception$>$}\newline
+{\ttfamily \#include $<$opencv2/core/core.\+hpp$>$}\newline
+{\ttfamily \#include $<$opencv2/core/utility.\+hpp$>$}\newline
+{\ttfamily \#include $<$opencv2/highgui/highgui.\+hpp$>$}\newline
+{\ttfamily \#include $<$opencv2/imgproc/imgproc.\+hpp$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{funciones_8h_acd9a19ff9821c2f1429a464088c0af6c}{on\+Mouse}} (int event, int x, int y, int flags, void $\ast$imagenes)
+\item 
+void \mbox{\hyperlink{funciones_8h_aaf4ad0ea09244a7dba0ae965a93e8b24}{on\+Mouse\+Poligono}} (int event, int x, int y, int flags, void $\ast$imagenes)
+\item 
+void \mbox{\hyperlink{funciones_8h_a99c9490dfe51a3ff518390340df335d3}{set\+Grises}} (cv\+::\+Rect plano\+\_\+ab, cv\+::\+Mat $\ast$imagenes)
+\item 
+void \mbox{\hyperlink{funciones_8h_a7f188c5ac397b10125026b7be13e2c17}{set\+Grises}} (std\+::vector$<$ cv\+::\+Point $>$ \&puntos, cv\+::\+Mat $\ast$imagenes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Manuel Mariscal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+29/09/2020
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{funciones_8h_acd9a19ff9821c2f1429a464088c0af6c}\label{funciones_8h_acd9a19ff9821c2f1429a464088c0af6c}} 
+\index{funciones.h@{funciones.h}!onMouse@{onMouse}}
+\index{onMouse@{onMouse}!funciones.h@{funciones.h}}
+\doxysubsubsection{\texorpdfstring{onMouse()}{onMouse()}}
+{\footnotesize\ttfamily void on\+Mouse (\begin{DoxyParamCaption}\item[{int}]{event,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{flags,  }\item[{void $\ast$}]{imagenes }\end{DoxyParamCaption})}
+
+Permite la selección de un rectangulo de dos formas distintas\+: \begin{DoxyItemize}
+\item Seleccionando dos puntos sobre la imagen. \item De forma interactiva arrastrando el ratón. Una vez seleccionado el rectangulo, no se podrá cambiar la seleccion.\end{DoxyItemize}
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Recibe un evento desde el ratón. Pueden ser de movimiento o pulsación de botones. \\
+\hline
+{\em x} & Coordenada x del evento del ratón. \\
+\hline
+{\em y} & Coordenada y del evento del ratón. \\
+\hline
+{\em flags} & ~\newline
+ \\
+\hline
+{\em imagenes} & Vector con las imagenes de entrada y salida. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 11 of file funciones.\+cc.
+
+\mbox{\Hypertarget{funciones_8h_aaf4ad0ea09244a7dba0ae965a93e8b24}\label{funciones_8h_aaf4ad0ea09244a7dba0ae965a93e8b24}} 
+\index{funciones.h@{funciones.h}!onMousePoligono@{onMousePoligono}}
+\index{onMousePoligono@{onMousePoligono}!funciones.h@{funciones.h}}
+\doxysubsubsection{\texorpdfstring{onMousePoligono()}{onMousePoligono()}}
+{\footnotesize\ttfamily void on\+Mouse\+Poligono (\begin{DoxyParamCaption}\item[{int}]{event,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{flags,  }\item[{void $\ast$}]{imagenes }\end{DoxyParamCaption})}
+
+Permite la selección de un poligono seleccionando varios puntos con el ratón. Una vez seleccionado el rectangulo, no se podrá cambiar la seleccion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Recibe un evento desde el ratón. Pueden ser de movimiento o pulsación de botones. \\
+\hline
+{\em x} & Coordenada x del evento del ratón. \\
+\hline
+{\em y} & Coordenada y del evento del ratón. \\
+\hline
+{\em flags} & ~\newline
+ \\
+\hline
+{\em imagenes} & Vector con las imagenes de entrada y salida. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 41 of file funciones.\+cc.
+
+\mbox{\Hypertarget{funciones_8h_a99c9490dfe51a3ff518390340df335d3}\label{funciones_8h_a99c9490dfe51a3ff518390340df335d3}} 
+\index{funciones.h@{funciones.h}!setGrises@{setGrises}}
+\index{setGrises@{setGrises}!funciones.h@{funciones.h}}
+\doxysubsubsection{\texorpdfstring{setGrises()}{setGrises()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void set\+Grises (\begin{DoxyParamCaption}\item[{cv\+::\+Rect}]{plano\+\_\+ab,  }\item[{cv\+::\+Mat $\ast$}]{imagenes }\end{DoxyParamCaption})}
+
+Cambia a escala de grises los colores de los pixeles externos al rectángulo recibido y guarda el resultado en una matriz imagen por si es necesario almacenarla. 
+\begin{DoxyParams}{Parameters}
+{\em plano\+\_\+ab} & Rectángulo seleccionado por el ratón en la función {\bfseries{on\+Mouse}}. \\
+\hline
+{\em imagenes} & Vector de dos elementos con las imagenes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 67 of file funciones.\+cc.
+
+\mbox{\Hypertarget{funciones_8h_a7f188c5ac397b10125026b7be13e2c17}\label{funciones_8h_a7f188c5ac397b10125026b7be13e2c17}} 
+\index{funciones.h@{funciones.h}!setGrises@{setGrises}}
+\index{setGrises@{setGrises}!funciones.h@{funciones.h}}
+\doxysubsubsection{\texorpdfstring{setGrises()}{setGrises()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void set\+Grises (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{puntos,  }\item[{cv\+::\+Mat $\ast$}]{imagenes }\end{DoxyParamCaption})}
+
+Cambia a escala de grises los colores de los pixeles externos al polígono recibido y guarda el resultado en una matriz imagen por si es necesario almacenarla. 
+\begin{DoxyParams}{Parameters}
+{\em plano\+\_\+ab} & Polígono seleccionado por el ratón en la función {\bfseries{on\+Mouse\+Poligono}}. \\
+\hline
+{\em imagenes} & Vector de dos elementos con las imagenes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 91 of file funciones.\+cc.
+

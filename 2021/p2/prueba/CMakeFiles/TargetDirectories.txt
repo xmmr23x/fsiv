@@ -1,0 +1,3 @@
+/mnt/datos/informatica/fsiv/practicas/p2/prueba/CMakeFiles/edit_cache.dir
+/mnt/datos/informatica/fsiv/practicas/p2/prueba/CMakeFiles/rebuild_cache.dir
+/mnt/datos/informatica/fsiv/practicas/p2/prueba/CMakeFiles/color_balance.dir

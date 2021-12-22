@@ -1,0 +1,13 @@
+He realizado la parte obligatoria y el filtro gaussiano.
+
+Ejecucion:
+	./usm_enhance -r="radio del filtro" -g="ganancia" -f=[0,1] <origen> <destino>
+
+Valores por defecto:
+	r=1
+	g=1.0
+	f=0
+
+valores de f:
+	0 = box filter
+	1 = gaussian filter

@@ -1,0 +1,9 @@
+Se han realizado todos los apartados de la práctica.
+
+Para ejecutar la parte obligatoria y la selección interactiva del rectangulo, desde la carpeta build:
+	./realce "ruta de la imagen a cargar" "ruta de la imagen a guardar"
+
+Para realizar la seleccion de un polígono:
+	./realce -p "ruta de la imagen a cargar" "ruta de la imagen a guardar"	
+
+En ambos casos despues de seleccionar la región se podrá salir sin guardar pulsando ESC o guardando con cualquier otra tecla. No será posible realizar otro realce sin salir de la aplicación.

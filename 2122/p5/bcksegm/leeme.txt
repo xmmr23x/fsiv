@@ -1,0 +1,13 @@
+Se han realizado las funciones:
+	- fsiv_remove_segmentation_noise
+	- fsiv_segm_by_dif
+	- fsiv_apply_mask
+	- vsegbase
+	- fsiv_learn_gaussian_model
+	- fsiv_segm_by_gaussian_model 
+	- fsiv_update_gaussian_model
+	- vsegadv
+
+Orden:
+	- vsegbase [-c] [-v=<string=video.avi>] [-g=<int=0>]  [-s=<int=0>]  [-t=<int=13>] <output>
+	- vsegadv [-b=<int=100>] [-a=<float=0.01>] [-k=<float=0.05>] [-u=<int=10>] [-U=<int=100>] [-r=<int>] [-g=<int>] [-c] [-v] <output>

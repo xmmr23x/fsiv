@@ -1,0 +1,6 @@
+Se permite seleccionar un rectangulo, un poligono y un circulo por linea de comandos.
+
+Ordenes utilizadas:
+	- rectangulo: ./realzar_primer_plano -r=x,y,w,h imagen_de_entrada imagen_de_salida
+	- circulo: ./realzar_primer_plano -c=x,y,r imagen_de_entrada imagen_de_salida
+	- poligono: ./realzar_primer_plano -r=x1,y1,x2,y2,... imagen_de_entrada imagen_de_salida

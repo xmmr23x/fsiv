@@ -1,0 +1,76 @@
+\hypertarget{main_8cc}{}\doxysection{src/main.cc File Reference}
+\label{main_8cc}\index{src/main.cc@{src/main.cc}}
+
+
+Realce de una imagen seleccionando un rectangulo o un poligono.  
+
+
+{\ttfamily \#include \char`\"{}funciones.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cc_ad1835a0a190dc5fe4f925bb69443c770}{main}} (int argc, char $\ast$const $\ast$argv)
+\begin{DoxyCompactList}\small\item\em Cuerpo del programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const cv\+::\+String {\bfseries keys}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Realce de una imagen seleccionando un rectangulo o un poligono. 
+
+\begin{DoxyAuthor}{Author}
+Manuel Mariscal 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+29/09/2020
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cc_ad1835a0a190dc5fe4f925bb69443c770}\label{main_8cc_ad1835a0a190dc5fe4f925bb69443c770}} 
+\index{main.cc@{main.cc}!main@{main}}
+\index{main@{main}!main.cc@{main.cc}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$const $\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Cuerpo del programa. 
+
+\begin{DoxyPrecond}{Precondition}
+Se debe indicar la ruta y el nombre de una imagen origen y otra destino para guardar los resultados.
+\end{DoxyPrecond}
+El programa recibirá como argumento la ruta de la imagen en la que se desea realizar el realce y la ruta donde se guardará el resultado en caso de ser el esperado. Hay dos opciones de ejecución\+: \begin{DoxyItemize}
+\item Opción por defecto\+: permite realizar el realce seleccionando dos puntos de la imagen o seleccionando un area de forma interactiva. Una vez realizado el realce no se puede modificar. \item -\/p\+: Permite seleccionar varios puntos de forma que se genere un poligono. Una vez realizado el realce no se puede modificar. \end{DoxyItemize}
+
+
+Definition at line 28 of file main.\+cc.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8cc_a421ae2d6a6278a3b84aa7bdf700621d7}\label{main_8cc_a421ae2d6a6278a3b84aa7bdf700621d7}} 
+\index{main.cc@{main.cc}!keys@{keys}}
+\index{keys@{keys}!main.cc@{main.cc}}
+\doxysubsubsection{\texorpdfstring{keys}{keys}}
+{\footnotesize\ttfamily const cv\+::\+String keys}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}\{help h usage ? |      | print this message   \}"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}\{p              |      | ejecuta onMousePoligono   \}"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}\{@image1        |      | image1 for compare   \}"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}\{@image2        |<none>| image2 for compare   \}"{}}}
+
+\end{DoxyCode}
+
+
+Definition at line 11 of file main.\+cc.
+

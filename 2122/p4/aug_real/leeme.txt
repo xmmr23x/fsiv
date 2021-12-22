@@ -1,0 +1,12 @@
+Se han realizado las funciones:
+	- fsiv_generate_3d_calibration_points
+	- fsiv_find_chessboard_corners
+	- fsiv_compute_camera_pose
+	- fsiv_draw_axes
+	- fsiv_load_calibration_parameters
+	- fsiv_project_image
+	- Se dibuja un modelo 3D 
+	- Se proyecta un vídeo
+
+Orden:
+	- aug_real [-c] [-m] [-i=<string=img.png>] [-v=<string=video.avi>] <board_rows> <board_cols> <board_size> <intrinsics filename> <input stream>

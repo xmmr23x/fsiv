@@ -1,0 +1,13 @@
+Se han realizado las funciones:
+	- fsiv_generate_3d_calibration_points
+	- fsiv_find_chessboard_corners
+	- fsiv_calibrate_camera
+	- fsiv_compute_camera_pose
+	- fsiv_draw_axes
+	- fsiv_save_calibration_parameters
+	- fsiv_load_calibration_parameters
+	- fsiv_undistort_image
+
+Orden:
+	- calibrate [-c=<int>] [-r=<int>] [-s=<float>] [-vervose] [-i=<string>] <output intrinsics filename> <input image 1> <input image 2> ... <input image n>
+	- undistort <intrinsics filename> <input image> <output image>

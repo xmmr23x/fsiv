@@ -1,0 +1,6 @@
+1.0:
+- primera versión.
+1.1:
+- Reescritos los test para generar un fichero con los datos usados para facilitar
+la depuración de errores.
+

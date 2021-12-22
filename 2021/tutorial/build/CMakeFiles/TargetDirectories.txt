@@ -1,0 +1,6 @@
+/mnt/datos/informatica/fsiv/practicas/tutorial/build/CMakeFiles/rebuild_cache.dir
+/mnt/datos/informatica/fsiv/practicas/tutorial/build/CMakeFiles/edit_cache.dir
+/mnt/datos/informatica/fsiv/practicas/tutorial/build/CMakeFiles/show_video.dir
+/mnt/datos/informatica/fsiv/practicas/tutorial/build/CMakeFiles/show_img.dir
+/mnt/datos/informatica/fsiv/practicas/tutorial/build/CMakeFiles/comp_stats.dir
+/mnt/datos/informatica/fsiv/practicas/tutorial/build/CMakeFiles/esqueleto.dir

@@ -1,0 +1,131 @@
+.TH "src/funciones.cc" 3 "Tue Sep 29 2020" "Version 1.0" "Practica 1 - Realce de imagen" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/funciones.cc \- Implementación de las funciones\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'funciones\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBonMouse\fP (int event, int x, int y, int flags, void *imagenes)"
+.br
+.ti -1c
+.RI "void \fBonMousePoligono\fP (int event, int x, int y, int flags, void *imagenes)"
+.br
+.ti -1c
+.RI "void \fBsetGrises\fP (cv::Rect plano_ab, cv::Mat *imagenes)"
+.br
+.ti -1c
+.RI "void \fBsetGrises\fP (std::vector< cv::Point > &puntos, cv::Mat *imagenes)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Implementación de las funciones\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+Manuel Mariscal 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+29/09/2020
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+1\&.0 
+.RE
+.PP
+
+.PP
+Definition in file \fBfunciones\&.cc\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void onMouse (int event, int x, int y, int flags, void * imagenes)"
+Permite la selección de un rectangulo de dos formas distintas: 
+.PD 0
+
+.IP "\(bu" 2
+Seleccionando dos puntos sobre la imagen\&. 
+.IP "\(bu" 2
+De forma interactiva arrastrando el ratón\&. Una vez seleccionado el rectangulo, no se podrá cambiar la seleccion\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP Recibe un evento desde el ratón\&. Pueden ser de movimiento o pulsación de botones\&. 
+.br
+\fIx\fP Coordenada x del evento del ratón\&. 
+.br
+\fIy\fP Coordenada y del evento del ratón\&. 
+.br
+\fIflags\fP 
+.br
+ 
+.br
+\fIimagenes\fP Vector con las imagenes de entrada y salida\&. 
+.RE
+.PP
+
+.PP
+Definition at line 11 of file funciones\&.cc\&.
+.SS "void onMousePoligono (int event, int x, int y, int flags, void * imagenes)"
+Permite la selección de un poligono seleccionando varios puntos con el ratón\&. Una vez seleccionado el rectangulo, no se podrá cambiar la seleccion\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP Recibe un evento desde el ratón\&. Pueden ser de movimiento o pulsación de botones\&. 
+.br
+\fIx\fP Coordenada x del evento del ratón\&. 
+.br
+\fIy\fP Coordenada y del evento del ratón\&. 
+.br
+\fIflags\fP 
+.br
+ 
+.br
+\fIimagenes\fP Vector con las imagenes de entrada y salida\&. 
+.RE
+.PP
+
+.PP
+Definition at line 41 of file funciones\&.cc\&.
+.SS "void setGrises (cv::Rect plano_ab, cv::Mat * imagenes)"
+Cambia a escala de grises los colores de los pixeles externos al rectángulo recibido y guarda el resultado en una matriz imagen por si es necesario almacenarla\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIplano_ab\fP Rectángulo seleccionado por el ratón en la función \fBonMouse\fP\&. 
+.br
+\fIimagenes\fP Vector de dos elementos con las imagenes\&. 
+.RE
+.PP
+
+.PP
+Definition at line 67 of file funciones\&.cc\&.
+.SS "void setGrises (std::vector< cv::Point > & puntos, cv::Mat * imagenes)"
+Cambia a escala de grises los colores de los pixeles externos al polígono recibido y guarda el resultado en una matriz imagen por si es necesario almacenarla\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIplano_ab\fP Polígono seleccionado por el ratón en la función \fBonMousePoligono\fP\&. 
+.br
+\fIimagenes\fP Vector de dos elementos con las imagenes\&. 
+.RE
+.PP
+
+.PP
+Definition at line 91 of file funciones\&.cc\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Practica 1 - Realce de imagen from the source code\&.
