@@ -60,8 +60,8 @@ fsiv_create_equalization_lookup_table(const cv::Mat& hist,
 	//TODO
 	//Usa las funciones fsiv_normalize_histogram y fsiv_accumulate_histogram
 	//para construir la tabla.
-	cv::Mat hist1 = cv::Mat::zeros(hist.rows, hist.cols, hist.type);
-	cv::Mat hist2 = cv::Mat::zeros(hist.rows, hist.cols, hist.type);
+	cv::Mat hist1 = cv::Mat::zeros(hist.rows, hist.cols, hist.type());
+	cv::Mat hist2 = cv::Mat::zeros(hist.rows, hist.cols, hist.type());
 	lkt = hist.clone();
 	int m;
 	
