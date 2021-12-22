@@ -64,8 +64,8 @@ fsiv_create_equalization_lookup_table(const cv::Mat& hist,
 	
 	fsiv_normalize_histogram(lkt);
 
-	float m1 = lkt.at<float>(127,0)
-	float m2 = lkt.at<float>(128,0)
+	float m1 = lkt.at<float>(127,0);
+	float m2 = lkt.at<float>(128,0);
 
 	fsiv_accumulate_histogram(lkt);
 
