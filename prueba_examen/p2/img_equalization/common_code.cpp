@@ -60,13 +60,29 @@ fsiv_create_equalization_lookup_table(const cv::Mat& hist,
 	//TODO
 	//Usa las funciones fsiv_normalize_histogram y fsiv_accumulate_histogram
 	//para construir la tabla.
+	cv::Mat hist1 = cv::Mat::zeros(hist.rows, hist.cols, hist.type);
+	cv::Mat hist2 = cv::Mat::zeros(hist.rows, hist.cols, hist.type);
 	lkt = hist.clone();
+	int m;
 	
 	fsiv_normalize_histogram(lkt);
 	fsiv_accumulate_histogram(lkt);
 
-	for (int i = 1; i < hist.rows; ++i)
-		std::cout << lkt.at<float>(i,0) << ":" << i << ":" << std::endl;
+	if (hold_median) {
+		for (int i = 0; i < hist.rows; ++i)
+			if (lkt.at<float>(i,0) > 0.5) { m = i; break; }
+
+		for (int i = 0; i < m; ++i) hist1.at<float>(i,0) = hist.at<float>(i,0);
+		for (int i = m; i < hist.rows; ++i) hist2.at<float>(i,0) = hist.at<float>(i,0);
+
+		fsiv_normalize_histogram(hist1);
+		fsiv_normalize_histogram(hist2);
+		fsiv_accumulate_histogram(hist1);
+		fsiv_accumulate_histogram(hist2);
+
+		for (int i = 0; i < m; ++i) lkt.at<float>(i,0) = hist1.at<float>(i,0);
+		for (int i = m; i < hist.rows; ++i) lkt.at<float>(i,0) = hist2.at<float>(i,0);
+	}
 
 	lkt.convertTo(lkt, CV_8UC1, 255.0);
 	//
