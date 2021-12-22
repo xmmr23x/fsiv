@@ -68,22 +68,6 @@ fsiv_create_equalization_lookup_table(const cv::Mat& hist,
 	fsiv_normalize_histogram(lkt);
 	fsiv_accumulate_histogram(lkt);
 
-	if (hold_median) {
-		for (int i = 0; i < hist.rows; ++i)
-			if (lkt.at<float>(i,0) > 0.5) { m = i; break; }
-
-		for (int i = 0; i < m; ++i) hist1.at<float>(i,0) = hist.at<float>(i,0);
-		for (int i = m; i < hist.rows; ++i) hist2.at<float>(i,0) = hist.at<float>(i,0);
-
-		fsiv_normalize_histogram(hist1);
-		fsiv_normalize_histogram(hist2);
-		fsiv_accumulate_histogram(hist1);
-		fsiv_accumulate_histogram(hist2);
-
-		for (int i = 0; i < m; ++i) lkt.at<float>(i,0) = hist1.at<float>(i,0);
-		for (int i = m; i < hist.rows; ++i) lkt.at<float>(i,0) = hist2.at<float>(i,0);
-	}
-
 	lkt.convertTo(lkt, CV_8UC1, 255.0);
 	//
 
@@ -103,8 +87,13 @@ fsiv_apply_lookup_table(const cv::Mat&in, const cv::Mat& lkt,
 							  out.rows==in.rows && out.cols==in.cols));
 
 	//TODO
+	out = in.clone();
 
+	for (int r = 0; r < in.rows; ++i)
+		for (int c = 0; c < in.rows; ++i)
+			out.at<uchar>(r,c) = lkt.at<uchar>(in.at<uchar>(r,c),0);
 	//
+
 	CV_Assert(out.rows ==in.rows && out.cols==in.cols && out.type()==in.type());
 	return out;
 }
@@ -118,7 +107,11 @@ fsiv_image_equalization(const cv::Mat& in, cv::Mat& out,
 	//Utiliza las funciones fsiv_compute_histogram,
 	//fsiv_create_equalization_lookup_table y fsiv_apply_lookup_table
 	//
+	cv::Mat hist, lkt;
 
+	hist = fsiv_compute_histogram(in, hist);
+	lkt  = fsiv_create_equalization_lookup_table(hist, hold_median);
+	out  = fsiv_apply_lookup_table(in, lkt, out);
 
 	//
 	CV_Assert(out.rows==in.rows && out.cols==in.cols && out.type()==in.type());
