@@ -31,7 +31,7 @@ fsiv_normalize_histogram(cv::Mat& hist)
     CV_Assert(hist.rows==256 && hist.cols==1);
 
     //TODO
-    cv::normalize(hist, hist);
+    cv::normalize(hist, hist, 1, 0, cv::NORM_L1);
 
     //
     CV_Assert(hist.type()==CV_32FC1);
