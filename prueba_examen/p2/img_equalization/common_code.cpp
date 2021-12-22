@@ -45,8 +45,8 @@ fsiv_accumulate_histogram(cv::Mat& hist)
     CV_Assert(hist.rows==256 && hist.cols==1);
 
     //TODO
-
-
+    for (int i = 1; i < hist.rows; ++i)
+        hist.at<float>(i,0) += hist.at<float>(i-1,0);
     //
 }
 
@@ -60,11 +60,12 @@ fsiv_create_equalization_lookup_table(const cv::Mat& hist,
     //TODO
     //Usa las funciones fsiv_normalize_histogram y fsiv_accumulate_histogram
     //para construir la tabla.
+    lkt = hist.clone();
+    
+    fsiv_normalize_histogram(lkt);
+    fsiv_accumulate_histogram(lkt);
 
-
-
-
-
+    lkt.convertTo(lkt, CV_8UC1, 255.0);
     //
 
     CV_Assert(lkt.type()==CV_8UC1);
