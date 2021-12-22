@@ -12,10 +12,11 @@ fsiv_compute_histogram(const cv::Mat& in, cv::Mat& hist)
     //1- Implementar un recorrido por la imagen y calcular el histograma.
     //2- Usar la función cv::calcHist.
     //Sugerencia: implementa las dos para comparar.
+    int histSize = 256;
     float range[] = {0.0, 256.0};
     const float *ranges = {range};
 
-    cv::calcHist(&in, 1, 0, cv::Mat(), hist, 1, 256, ranges);
+    cv::calcHist(&in, 1, 0, cv::Mat(), hist, 1, &histSize, &ranges);
     //
 
     CV_Assert(hist.type()==CV_32FC1);
