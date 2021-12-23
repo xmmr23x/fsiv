@@ -35,7 +35,7 @@ cv::Mat fsiv_wp_color_balance(cv::Mat const& in)
 
     // obtencion del punto mas luminoso
     cv::Point p_max;
-    cv::minMaxLoc(in, NULL, NULL, NULL, &p_max);
+    cv::minMaxLoc(gray, NULL, NULL, NULL, &p_max);
     cv::Vec3b max_val = in.at<cv::Vec3b>(p_max);
 
     // valores para calcular wp 
