@@ -16,7 +16,7 @@ fsiv_compute_histogram(const cv::Mat& in, cv::Mat& hist)
 	float range[]       = {0.0,256.0};
 	const float *ranges = {range};
 
-	cv::calcHist(&in, 1, 1, cv::Mat(), &hist, 1, &histSize, &ranges);
+	cv::calcHist(&in, 1, 0, cv::Mat(), hist, 1, &histSize, &ranges);
 
 	//
 
