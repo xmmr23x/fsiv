@@ -13,9 +13,10 @@ fsiv_compute_histogram(const cv::Mat& in, cv::Mat& hist)
 	//2- Usar la función cv::calcHist.
 	//Sugerencia: implementa las dos para comparar.
 	int histSize  = 256;
-	float *ranges = {{0.0, 256.0}};
+	float range[]       = {0.0,256.0};
+	const float *ranges = {range};
 
-	cv::calcHist(&in, 1, 1, cv::Mat(), &hist, 1, &histSize, ranges);
+	cv::calcHist(&in, 1, 1, cv::Mat(), &hist, 1, &histSize, &ranges);
 
 	//
 
@@ -85,8 +86,8 @@ fsiv_apply_lookup_table(const cv::Mat&in, const cv::Mat& lkt,
 							  out.rows==in.rows && out.cols==in.cols));
 
 	//TODO
-	for (int r = 0; r < in.rows; ++i)
-		for (int c = 0; c < in.cols; ++i)
+	for (int r = 0; r < in.rows; ++r)
+		for (int c = 0; c < in.cols; ++c)
 			out.at<unsigned char>(r,c) = lkt.at<unsigned char>(in.at<unsigned char>(r,c), 0);
 	//
 	CV_Assert(out.rows ==in.rows && out.cols==in.cols && out.type()==in.type());
