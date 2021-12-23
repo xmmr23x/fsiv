@@ -12,11 +12,11 @@ fsiv_compute_histogram(const cv::Mat& in, cv::Mat& hist)
 	//1- Implementar un recorrido por la imagen y calcular el histograma.
 	//2- Usar la función cv::calcHist.
 	//Sugerencia: implementa las dos para comparar.
-	int histSize = 256;
-	float range[] = {0.0, 256.0};
-	const float *ranges = {range};
+	int histSize  = 256;
+	float *ranges = {{0.0, 256.0}};
 
-	cv::calcHist(&in, 1, 0, cv::Mat(), hist, 1, &histSize, &ranges);
+	cv::calcHist(&in, 1, 1, cv::Mat(), &hist, 1, &histSize, ranges);
+
 	//
 
 	CV_Assert(hist.type()==CV_32FC1);
@@ -46,7 +46,8 @@ fsiv_accumulate_histogram(cv::Mat& hist)
 
 	//TODO
 	for (int i = 1; i < hist.rows; ++i)
-		hist.at<float>(i,0) += hist.at<float>(i-1,0);
+		hist.at<float>(i,0) += hist.at<float>(-1,0);
+
 	//
 }
 
@@ -60,15 +61,12 @@ fsiv_create_equalization_lookup_table(const cv::Mat& hist,
 	//TODO
 	//Usa las funciones fsiv_normalize_histogram y fsiv_accumulate_histogram
 	//para construir la tabla.
-	cv::Mat hist1 = cv::Mat::zeros(hist.rows, hist.cols, hist.type());
-	cv::Mat hist2 = cv::Mat::zeros(hist.rows, hist.cols, hist.type());
 	lkt = hist.clone();
-	int m;
-	
+
 	fsiv_normalize_histogram(lkt);
 	fsiv_accumulate_histogram(lkt);
 
-	lkt.convertTo(lkt, CV_8UC1, 255.0);
+	lkt.convertTo(lkt, CV_8UC1);
 	//
 
 	CV_Assert(lkt.type()==CV_8UC1);
@@ -87,13 +85,10 @@ fsiv_apply_lookup_table(const cv::Mat&in, const cv::Mat& lkt,
 							  out.rows==in.rows && out.cols==in.cols));
 
 	//TODO
-	out = in.clone();
-
-	for (int r = 0; r < in.rows; r++)
-		for (int c = 0; c < in.cols; c++)
-			out.at<unsigned char>(r,c) = lkt.at<unsigned char>(in.at<unsigned char>(r,c),0);
+	for (int i = 0; i < count; ++i)
+		for (int i = 0; i < count; ++i)
+			out.at<unsigned char>(r,c) = lkt.at<unsigned char>(in.at<unsigned char>(r,c), 0);
 	//
-
 	CV_Assert(out.rows ==in.rows && out.cols==in.cols && out.type()==in.type());
 	return out;
 }
@@ -110,8 +105,8 @@ fsiv_image_equalization(const cv::Mat& in, cv::Mat& out,
 	cv::Mat hist, lkt;
 
 	hist = fsiv_compute_histogram(in, hist);
-	lkt  = fsiv_create_equalization_lookup_table(hist, hold_median);
-	out  = fsiv_apply_lookup_table(in, lkt, out);
+	lkt = fsiv_create_equalization_lookup_table(hist, hold_median);
+	out = fsiv_apply_lookup_table(in, lkt, out);
 
 	//
 	CV_Assert(out.rows==in.rows && out.cols==in.cols && out.type()==in.type());
