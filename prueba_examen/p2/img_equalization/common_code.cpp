@@ -47,7 +47,7 @@ fsiv_accumulate_histogram(cv::Mat& hist)
 
 	//TODO
 	for (int i = 1; i < hist.rows; ++i)
-		hist.at<float>(i,0) += hist.at<float>(-1,0);
+		hist.at<float>(i,0) += hist.at<float>(i-1,0);
 
 	//
 }
