@@ -86,6 +86,8 @@ fsiv_apply_lookup_table(const cv::Mat&in, const cv::Mat& lkt,
 							  out.rows==in.rows && out.cols==in.cols));
 
 	//TODO
+	out = in.clone();
+
 	for (int r = 0; r < in.rows; ++r)
 		for (int c = 0; c < in.cols; ++c)
 			out.at<unsigned char>(r,c) = lkt.at<unsigned char>(in.at<unsigned char>(r,c), 0);
