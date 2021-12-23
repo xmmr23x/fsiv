@@ -43,7 +43,7 @@ cv::Mat fsiv_wp_color_balance(cv::Mat const& in)
     cv::Scalar max(max_val[0],max_val[1],max_val[2]);
 
     // calculo
-    out = fsiv_color_rescaling(in, white, max);
+    out = fsiv_color_rescaling(in, max, white);
 
     //
     CV_Assert(out.type()==in.type());
