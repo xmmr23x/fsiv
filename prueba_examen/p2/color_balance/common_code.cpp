@@ -9,12 +9,12 @@ cv::Mat fsiv_color_rescaling(const cv::Mat& in, const cv::Scalar& from, const cv
     //TODO
     //Cuidado con dividir por cero.
     //Evita los bucles.
-    cv::Scalar wp(1,1,1);
+    cv::Scalar cr(1,1,1);
 
     if (from[0] != 0 && from[1] != 0 && from[2] != 0) 
-        wp = cv::Scalar(to[0]/from[0],to[1]/from[1],to[2]/from[2]);
+        cr = cv::Scalar(to[0]/from[0],to[1]/from[1],to[2]/from[2]);
 
-    out = in.mul(wp);
+    out = in.mul(cr);
     //
     CV_Assert(out.type()==in.type());
     CV_Assert(out.rows==in.rows && out.cols==in.cols);
@@ -56,9 +56,10 @@ cv::Mat fsiv_gw_color_balance(cv::Mat const& in)
     CV_Assert(in.type()==CV_8UC3);
     cv::Mat out;
     //TODO
+    cv::Scalar gw(128,128,128);
+    cv::Scalar mean = cv::mean(in);
 
-
-
+    fsiv_color_rescaling(in, mean, gw);
     //
     CV_Assert(out.type()==in.type());
     CV_Assert(out.rows==in.rows && out.cols==in.cols);
