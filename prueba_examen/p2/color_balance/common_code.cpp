@@ -9,7 +9,7 @@ cv::Mat fsiv_color_rescaling(const cv::Mat& in, const cv::Scalar& from, const cv
     //TODO
     //Cuidado con dividir por cero.
     //Evita los bucles.
-    cv::Scalar wp::all(1);
+    cv::Scalar wp.all(1);
 
     if (from[0] != 0 && from[1] != 0 && from[2] != 0) 
         wp = cv::Scalar(to[0]/from[0],to[1]/from[1],to[2]/from[2]);
