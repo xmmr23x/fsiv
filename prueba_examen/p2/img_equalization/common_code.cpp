@@ -67,7 +67,7 @@ fsiv_create_equalization_lookup_table(const cv::Mat& hist,
 	fsiv_normalize_histogram(lkt);
 	fsiv_accumulate_histogram(lkt);
 
-	lkt.convertTo(lkt, CV_8UC1);
+	lkt.convertTo(lkt, CV_8UC1, 255.0);
 	//
 
 	CV_Assert(lkt.type()==CV_8UC1);
