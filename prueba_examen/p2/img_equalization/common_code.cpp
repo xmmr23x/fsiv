@@ -85,8 +85,8 @@ fsiv_apply_lookup_table(const cv::Mat&in, const cv::Mat& lkt,
 							  out.rows==in.rows && out.cols==in.cols));
 
 	//TODO
-	for (int i = 0; i < count; ++i)
-		for (int i = 0; i < count; ++i)
+	for (int r = 0; r < in.rows; ++i)
+		for (int c = 0; c < in.cols; ++i)
 			out.at<unsigned char>(r,c) = lkt.at<unsigned char>(in.at<unsigned char>(r,c), 0);
 	//
 	CV_Assert(out.rows ==in.rows && out.cols==in.cols && out.type()==in.type());
