@@ -59,7 +59,7 @@ cv::Mat fsiv_gw_color_balance(cv::Mat const& in)
     cv::Scalar gw(128,128,128);
     cv::Scalar mean = cv::mean(in);
 
-    fsiv_color_rescaling(in, mean, gw);
+    out = fsiv_color_rescaling(in, mean, gw);
     //
     CV_Assert(out.type()==in.type());
     CV_Assert(out.rows==in.rows && out.cols==in.cols);
