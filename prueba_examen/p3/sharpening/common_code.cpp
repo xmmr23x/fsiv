@@ -48,7 +48,7 @@ fsiv_create_laplacian_filter(const int filter_type, int r1, int r2)
 		cv::Mat a,b;
 		a = fsiv_create_gaussian_filter(r2);
 		b = fsiv_create_gaussian_filter(r1);
-		fsiv_extend_image(b, a.size());
+		b = fsiv_extend_image(b, a.size());
 		filter = a - b;
 	}
 	//
