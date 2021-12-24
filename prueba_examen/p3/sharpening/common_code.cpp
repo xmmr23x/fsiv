@@ -111,8 +111,8 @@ fsiv_filter2D(cv::Mat const& in, cv::Mat const& filter)
 	CV_Assert(in.type()==CV_32FC1 && filter.type()==CV_32FC1);
 	cv::Mat ret_v;
 	//TODO
-	int r = in.rows-filter.rows;
-	int c = in.cols-filter.cols;
+	int r = in.rows-2*(filter.rows/2);
+	int c = in.cols-2*(filter.rows/2);
 	ret_v = cv::Mat::zeros(r,c,in.type());
 
 	for (int i = 0; i < r; ++i)
