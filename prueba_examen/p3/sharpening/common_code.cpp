@@ -13,7 +13,7 @@ fsiv_create_gaussian_filter(const int r)
     ret_v = cv::Mat(d,d,CV_32FC1); 
 
     for (int i = 0; i < d; ++i) 
-        for (int j = 0; j < count; ++j) 
+        for (int j = 0; j < d; ++j) 
             ret_v.at<float>(i,j) = exp(-(pow(i-r, 2) + pow(j-r, 2))/2*sigma);
 
     //
