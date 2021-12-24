@@ -59,7 +59,7 @@ fsiv_fill_expansion(cv::Mat const& in, const int r)
     cv::Mat ret_v;
     //TODO:
     //Hint you don't need use any for sentence.
-    int d = 2*r+1;
+    int d = 2*r;
     ret_v = cv::Mat::zeros(in.rows+d,in.cols+d,in.type());
 
     in.copyTo(ret_v(cv::Rect(r,r,in.cols,in.rows)));
