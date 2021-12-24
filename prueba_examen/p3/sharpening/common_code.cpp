@@ -117,7 +117,7 @@ fsiv_filter2D(cv::Mat const& in, cv::Mat const& filter)
 
 	for (int i = 0; i < r; ++i)
 		for (int j = 0; j < c; ++j)
-			ret_v.at<float>(i,j) = sum(filter.mul(in(cv::Rect(j,i,filter.cols,filter.rows))));
+			ret_v.at<float>(i,j) = sum(filter.mul(in(cv::Rect(j,i,filter.cols,filter.rows)))).val[0];
 	//
 	CV_Assert(ret_v.type()==CV_32FC1);
 	CV_Assert(ret_v.rows==in.rows-2*(filter.rows/2));
