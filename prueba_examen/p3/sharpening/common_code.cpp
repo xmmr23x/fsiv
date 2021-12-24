@@ -9,7 +9,7 @@ fsiv_create_gaussian_filter(const int r)
     cv::Mat ret_v;
     //TODO: Remenber 6*sigma is approx 99,73% of the distribution.
     int d       = 2*r+1;
-    float sigma = pow(d/6,2);
+    float sigma = pow(d/6.0,2);
     ret_v = cv::Mat(d,d,CV_32FC1); 
 
     for (int i = 0; i < d; ++i) 
