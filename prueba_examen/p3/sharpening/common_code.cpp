@@ -119,8 +119,8 @@ fsiv_extend_image(const cv::Mat& img, const cv::Size& new_size)
     CV_Assert(img.cols<new_size.width);
     cv::Mat out;
     //TODO
-
-
+    r = new_size.width - img.cols;
+    out = fsiv_fill_expansion(img,r);
     //
     CV_Assert(out.type()==img.type());
     CV_Assert(out.rows == new_size.height);
