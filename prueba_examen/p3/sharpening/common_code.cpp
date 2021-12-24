@@ -59,8 +59,10 @@ fsiv_fill_expansion(cv::Mat const& in, const int r)
     cv::Mat ret_v;
     //TODO:
     //Hint you don't need use any for sentence.
+    int d = 2*r+1;
+    ret_v = cv::Mat::zeros(in.rows+d,in.cols+d,in.type());
 
-
+    in.copyTo(ret_v(cv::Rect(r,r,in.rows,in.cols)));
     //
     CV_Assert(ret_v.type()==in.type());
     CV_Assert(ret_v.rows == in.rows+2*r);
