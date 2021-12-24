@@ -39,10 +39,10 @@ fsiv_create_laplacian_filter(const int filter_type, int r1, int r2)
         filter.at<float>(0,2) = 0;
         filter.at<float>(2,0) = 0;
         filter.at<float>(2,2) = 0;
-        filter.at<float>(1,1) = 4;
+        filter.at<float>(1,1) = -4;
     }
 
-    else if (filter_type == 1) filter.at<float>(1,1) = 8;
+    else if (filter_type == 1) filter.at<float>(1,1) = -8;
     //
     CV_Assert(filter.type()==CV_32FC1);
     CV_Assert((filter_type == 2) || (filter.rows==3 && filter.cols==3) );
